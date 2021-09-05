@@ -12,11 +12,8 @@ bot = commands.Bot(command_prefix='>', intents=intents)
 @bot.command()
 @commands.has_any_role("admin", "moderator")
 async def clear(ctx, amount=1):
-    try:
-        amount += 1
-        await ctx.channel.purge(limit=amount)
-    except commands.MissingRole:
-        await ctx.send("access denied")
+    amount += 1
+    await ctx.channel.purge(limit=amount)
 
 
 @bot.command()
@@ -68,4 +65,4 @@ async def news(ctx):
             count += 1
 
 
-bot.run('ODc4MjA0MDg4OTM5MDc3NjYy.YR9xSw.9piMuhmaaf7OQge1Qtdvzc7yPhU')
+bot.run('ODc4MjA0MDg4OTM5MDc3NjYy.YR9xSw.ykZzxdMtLT-N8ljeszIrmxTncXA')
