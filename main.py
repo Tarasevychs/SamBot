@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 from bs4 import BeautifulSoup
+from discord.ext.commands import CommandNotFound
 import requests
 
 intents = discord.Intents.default()
@@ -10,26 +11,27 @@ bot = commands.Bot(command_prefix='>', intents=intents)
 
 @bot.command()
 async def what(ctx):
-    emb = discord.Embed(title=str('L-help'), color=0xe5e500, )
-    emb.add_field(name="commands", value="``>what`` - this message\n"
-                                         "``>news``- news from hackernews\n"
-                                         "``>github``- github repository",
+    emb = discord.Embed(title=str('L-help'), color=0xA3BE8C, )
+    emb.add_field(name="info", value="``>what`` - this message\n"
+                                     "``>news``- news from hackernews\n"
+                                     "``>github``- github repository",
                   inline=False)
     await ctx.send(embed=emb)
 
 
 @bot.event
-async def on_command_error(ctx):
-    await ctx.send("command not found, type ``>what``")
+async def on_command_error(ctx, error):
+    if isinstance(error, CommandNotFound):
+        await ctx.send("command not found, type ``>what``")
 
 
 @bot.event
-async def on_member_join(member, ):
+async def on_member_join(member):
     channel = bot.get_channel(878252882384785450)
     role = discord.utils.get(member.guild.roles, id=878265807535214592)
 
     await member.add_roles(role)
-    await channel.send(embed=discord.Embed(description=f'hello ``{member.name}``!', color=0xe5e500))
+    await channel.send(embed=discord.Embed(description=f'hello ``{member.name}``!', color=0xEBCB8B))
 
 
 @bot.command()
@@ -49,9 +51,9 @@ async def news(ctx):
         if temes is not None and not 'github.com' in str(temes.text) and count < 6:
             sublink = temes.get('href')
             emb = discord.Embed(title=str(temes.text), url=str(sublink), description=f'#{count} in hackernews',
-                                color=0xe5e500)
+                                color=0x81A1C1)
             await ctx.send(embed=emb)
             count += 1
 
 
-bot.run('token')
+bot.run('ODc4MjA0MDg4OTM5MDc3NjYy.YR9xSw.qit6xdaITMp7L4-hfFkstD2wCJw')
