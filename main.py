@@ -15,11 +15,11 @@ async def ping(ctx):
 
 @bot.event
 async def on_member_join(member, ):
-    # channel = bot.get_channel(878252882384785450)
+    channel = bot.get_channel(878252882384785450)
     role = discord.utils.get(member.guild.roles, id=878265807535214592)
 
     await member.add_roles(role)
-    # await channel.send(embed=discord.Embed(description=f'Hello ``{member.name}``!', color=0xffffff))
+    await channel.send(embed=discord.Embed(description=f'Hello ``{member.name}``!', color=0xe5e500))
 
 
 @bot.command()
@@ -34,9 +34,9 @@ async def news(ctx):
         if temes is not None and not 'github.com' in str(temes.text) and count < 6:
             sublink = temes.get('href')
             emb = discord.Embed(title=str(temes.text), url=str(sublink), description=f'#{count} in hackernews',
-                                colour=discord.Color.green())
+                                color=0xe5e500)
             await ctx.send(embed=emb)
             count += 1
 
 
-bot.run('ODc4MjA0MDg4OTM5MDc3NjYy.YR9xSw.zsINOrcbkjFB7_PKgsLXRNxJUoE')
+bot.run('token')
