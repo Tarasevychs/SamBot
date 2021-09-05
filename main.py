@@ -10,11 +10,23 @@ bot = commands.Bot(command_prefix='>', intents=intents)
 
 
 @bot.command()
+@commands.has_any_role("admin", "moderator")
+async def clear(ctx, amount=1):
+    try:
+        amount += 1
+        await ctx.channel.purge(limit=amount)
+    except commands.MissingRole:
+        await ctx.send("access denied")
+
+
+@bot.command()
 async def what(ctx):
     emb = discord.Embed(title=str('L-help'), color=0xA3BE8C, )
     emb.add_field(name="info", value="``>what`` - this message\n"
                                      "``>news``- news from hackernews\n"
                                      "``>github``- github repository",
+                  inline=False)
+    emb.add_field(name="moderation", value="``>clear [number]`` - delete messages",
                   inline=False)
     await ctx.send(embed=emb)
 
@@ -56,4 +68,4 @@ async def news(ctx):
             count += 1
 
 
-bot.run('ODc4MjA0MDg4OTM5MDc3NjYy.YR9xSw.qit6xdaITMp7L4-hfFkstD2wCJw')
+bot.run('ODc4MjA0MDg4OTM5MDc3NjYy.YR9xSw.9piMuhmaaf7OQge1Qtdvzc7yPhU')
