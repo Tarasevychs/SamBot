@@ -9,8 +9,13 @@ bot = commands.Bot(command_prefix='>', intents=intents)
 
 
 @bot.command()
-async def ping(ctx):
-    await ctx.send('pong')
+async def what(ctx):
+    emb = discord.Embed(title=str('L-help'), color=0xe5e500, )
+    emb.add_field(name="commands", value="``>what`` - this message\n"
+                                         "``>news``- news from hackernews\n"
+                                         "``>github``- github repository",
+                  inline=False)
+    await ctx.send(embed=emb)
 
 
 @bot.event
@@ -19,8 +24,11 @@ async def on_member_join(member, ):
     role = discord.utils.get(member.guild.roles, id=878265807535214592)
 
     await member.add_roles(role)
-    await channel.send(embed=discord.Embed(description=f'Hello ``{member.name}``!', color=0xe5e500))
+    await channel.send(embed=discord.Embed(description=f'hello ``{member.name}``!', color=0xe5e500))
 
+@bot.command()
+async def github(ctx):
+    await ctx.send("https://github.com/Tarasevychs/LDiscordBot")
 
 @bot.command()
 async def news(ctx):
