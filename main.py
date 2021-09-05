@@ -17,9 +17,11 @@ async def what(ctx):
                   inline=False)
     await ctx.send(embed=emb)
 
+
 @bot.event
-async def on_command_error(ctx, error):
+async def on_command_error(ctx):
     await ctx.send("command not found, type ``>what``")
+
 
 @bot.event
 async def on_member_join(member, ):
@@ -29,9 +31,11 @@ async def on_member_join(member, ):
     await member.add_roles(role)
     await channel.send(embed=discord.Embed(description=f'hello ``{member.name}``!', color=0xe5e500))
 
+
 @bot.command()
 async def github(ctx):
     await ctx.send("https://github.com/Tarasevychs/LDiscordBot")
+
 
 @bot.command()
 async def news(ctx):
