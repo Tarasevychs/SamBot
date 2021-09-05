@@ -1,0 +1,28 @@
+body {
+  background: #3B4252;
+  color: #D8DEE9;
+  font-family: Ubuntu;
+}
+.logo_img {
+  width: 50px;
+  height: 50px;
+}
+.logo {
+  margin-left: 30px;
+}
+.header {
+  margin-top: 30px;
+  width: 50;
+  height: 50;
+}
+.nav_link {
+  text-decoration: none;
+  color: #D8DEE9;
+  font-size: 20px;
+  font-family: Rubik;
+  font-weight: bold;
+  margin-right: 20px
+}
+.nav {
+  float:right;
+}
