@@ -17,6 +17,9 @@ async def what(ctx):
                   inline=False)
     await ctx.send(embed=emb)
 
+@bot.event
+async def on_command_error(ctx, error):
+    await ctx.send("command not found, type ``>what``")
 
 @bot.event
 async def on_member_join(member, ):
